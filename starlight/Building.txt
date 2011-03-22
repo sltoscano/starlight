@@ -1,0 +1,20 @@
+Box2D uses CMake to describe the build in a platform independent manner.
+
+First download and install cmake from cmake.org
+
+For Microsoft Visual Studio:
+- Run the cmake-gui
+- Set the source directory to the path of starlight on your PC (the folder that contains this file).
+- Set the build directory to be the path of starlight/build on your PC.
+- Press the Configure button and select your version of Visual Studio.
+- You may have to press the Configure button again.
+- Press the Generate button.
+- Open starlight/build/starlight.sln.
+- Set the starlight as your startup project.
+- Press F5 or Ctrl-F5 to run.
+
+For Unix platforms, say the following on a terminal: (Replace $STARLIGHTPATH with the directory where this file is located.)
+	cd $STARLIGHTPATH/build
+	cmake -DBOX2D_BUILD_STATIC=ON ..
+	make
+
