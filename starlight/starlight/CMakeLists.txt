@@ -28,7 +28,7 @@ set(ENTITIES_SRCS
     entities/ship.h
 )
 
-# These are used to create visual studio folders.
+# These are used to create visual studio or xcode folders.
 source_group(entities FILES ${ENTITIES_SRCS})
 
 include_directories (
