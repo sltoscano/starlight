@@ -4,10 +4,32 @@ add_definitions( -DFREEGLUT_EXPORTS -DFREEGLUT_STATIC -D_CRT_SECURE_NO_WARNINGS 
 # Define the starlight sources.
 set(STARLIGHT_SRCS
     main.cpp
+    common.h
+    communication.cpp
+    communication.h
+    dbg.cpp
+    dbg.h
+    glmain.cpp
+    glmain.h
+    render.cpp
+    render.h
+    simulation.cpp
+    simulation.h
+)
+
+set(ENTITIES_SRCS
+    entities/asteroid.cpp
+    entities/asteroid.h
+    entities/bullet.cpp
+    entities/bullet.h
+    entities/entity.cpp
+    entities/entity.h
+    entities/ship.cpp
+    entities/ship.h
 )
 
 # These are used to create visual studio folders.
-source_group(src FILES ${STARLIGHT_SRCS})
+source_group(entities FILES ${ENTITIES_SRCS})
 
 include_directories (
     ${OPENGL_INCLUDE_DIR}
@@ -23,6 +45,7 @@ endif(APPLE)
 
 add_executable(starlight
     ${STARLIGHT_SRCS}
+    ${ENTITIES_SRCS}
 )
 
 target_link_libraries (
