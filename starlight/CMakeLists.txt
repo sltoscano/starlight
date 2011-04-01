@@ -14,5 +14,6 @@ set(BOX2D_VERSION 2.1.0)
 find_package(OpenGL REQUIRED)
 add_subdirectory(freeglut)
 add_subdirectory(Box2D)
+add_subdirectory(inet)
 add_subdirectory(starlight)
 

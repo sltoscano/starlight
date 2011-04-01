@@ -50,6 +50,7 @@ add_executable(starlight
 
 target_link_libraries (
     starlight
+    inet
     Box2D
     freeglut_static
     ${OPENGL_LIBRARIES}
