@@ -1,0 +1,17 @@
+Two lines after last include or define at top of file
+Wrap includes in #ifdef SOME_H .. #define SOME_H
+Don't pass 120 col
+Indent four spaces no tabs
+Always add extra space at end of files
+Members of class have underscore, i.e.
+class Entity
+{
+public:
+    b2Vec2 _angularVelocity;
+Members of struct don't have underscore
+Use const type foo instead of #define foo for constants
+Class names are first letter caps rest camel
+Members are underscore first letter lower rest camel
+locals and params are first letter lower rest camel
+Constants prefixed with k_
+
