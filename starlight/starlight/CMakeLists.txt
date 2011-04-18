@@ -18,13 +18,10 @@ set(STARLIGHT_SRCS
 )
 
 set(ENTITIES_SRCS
-    entities/asteroid.cpp
     entities/asteroid.h
-    entities/bullet.cpp
     entities/bullet.h
     entities/entity.cpp
     entities/entity.h
-    entities/ship.cpp
     entities/ship.h
 )
 

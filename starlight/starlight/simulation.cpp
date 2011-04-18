@@ -60,10 +60,18 @@ Simulation::Simulation(Settings* settings)
     // right
     groundBox.SetAsEdge(b2Vec2(x,y), b2Vec2(x,0));
     _groundBody->CreateFixture(&groundBox,0);
+
+    // TODO: if client then create a new ship
+    entities.push_back(Create(e_ship, _world));
 }
 
 Simulation::~Simulation()
 {
+    for (EntityList::iterator entity = entities.begin(); entity != entities.end(); entity++)
+    {
+        delete (*entity);
+    }
+
     /// By deleting the world, we delete the bomb, mouse joint, etc.
     delete _world;
     _world = NULL;
@@ -167,14 +175,6 @@ void Simulation::Step()
 
     _world->Step(timeStep, _settings->velocityIterations, _settings->positionIterations);
 
-    // TODO: Instead of this
-    // _world->DrawDebugData();
-    // Do this
-    // Walk vector of entities
-    // for each entity
-    //   entity->step()
-    //   entity->drawcallback()
-
     if (timeStep > 0.0f)
     {
         ++_stepCount;
@@ -184,8 +184,14 @@ void Simulation::Step()
     {
         /*
         _debugDraw.DrawString(5, _textLine, "bodies/contacts/joints/proxies = %d/%d/%d",
-                               _world->GetBodyCount(), _world->GetContactCount(), _world->GetJointCount(), _world->GetProxyCount());
+            _world->GetBodyCount(), _world->GetContactCount(), _world->GetJointCount(), _world->GetProxyCount());
         _textLine += 15;
         */
+    }
+
+    for (EntityList::iterator entity = entities.begin(); entity != entities.end(); entity++)
+    {
+        (*entity)->Step();
+        //entity->drawcallback()
     }
 }

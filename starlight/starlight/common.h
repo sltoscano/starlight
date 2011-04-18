@@ -4,6 +4,6 @@
 
 #include "dbg.h"
 
-#define REF(x) (x)
+#define REF(x) ((void)(x))
 
 #endif

@@ -4,6 +4,7 @@
 
 #include "common.h"
 #include "render.h"
+#include "entities/entity.h"
 #include <Box2D/Box2D.h>
 
 
@@ -35,6 +36,7 @@ struct Settings
     float32 hz;
     int32 velocityIterations;
     int32 positionIterations;
+    int32 drawStats;
     int32 drawShapes;
     int32 drawJoints;
     int32 drawAABBs;
@@ -44,7 +46,6 @@ struct Settings
     int32 drawContactForces;
     int32 drawFrictionForces;
     int32 drawCOMs;
-    int32 drawStats;
     int32 enableWarmStarting;
     int32 enableContinuous;
     int32 pause;
@@ -120,6 +121,8 @@ protected:
     b2Vec2 _mouseWorld;
     int32 _stepCount;
     Settings* _settings;
+
+    EntityList entities;
 };
 
 #endif
