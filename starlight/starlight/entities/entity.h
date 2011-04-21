@@ -4,12 +4,13 @@
 
 #include <Box2D/Box2D.h>
 #include <vector>
+#include "../render.h"
 
 
 class Entity
 {
 public:
-    Entity(b2World* world);
+    Entity(b2World* world, RenderCallback* render);
 
     virtual void Step() = 0;
     virtual void Keyboard() = 0;
@@ -20,6 +21,7 @@ protected:
     int _entityID;
     b2Body* _body;
     b2World* _world;
+    RenderCallback* _render;
 };
 
 typedef std::vector<Entity*> EntityList;
@@ -31,6 +33,6 @@ enum EntityType
     e_ship
 };
 
-Entity* Create(EntityType type, b2World* world);
+Entity* Create(EntityType type, b2World* world, RenderCallback* render);
 
 #endif

@@ -79,7 +79,7 @@ struct ContactPoint
 class Simulation : public b2ContactListener
 {
 public:
-    Simulation(Settings* settings);
+    Simulation(Settings* settings, RenderCallback* render);
     virtual ~Simulation();
 
     void SetTextLine(int32 line) { _textLine = line; }

@@ -11,7 +11,8 @@ set(STARLIGHT_SRCS
     dbg.h
     glmain.cpp
     glmain.h
-    render.cpp
+    glrender.cpp
+    glrender.h
     render.h
     simulation.cpp
     simulation.h

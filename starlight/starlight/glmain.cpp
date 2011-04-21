@@ -1,6 +1,7 @@
 
 #include "common.h"
 #include "simulation.h"
+#include "glrender.h"
 #include <freeglut/GL/freeglut.h>
 
 
@@ -15,6 +16,7 @@ namespace
     float settingsHz = 60.0;
     Simulation* simulation;
     Settings settings;
+    GLRenderCallback render;
 }
 
 b2Vec2 ConvertScreenToWorld(int32 x, int32 y)
@@ -198,7 +200,7 @@ int glmain(int argc, char *argv[])
 
     settings.hz = settingsHz;
     settings.worldExtents = ConvertScreenToWorld(width, height);
-    simulation = new Simulation(&settings);
+    simulation = new Simulation(&settings, &render);
 
     atexit(glexit);
     glutMainLoop();

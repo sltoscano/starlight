@@ -14,7 +14,7 @@ void DestructionListener::SayGoodbye(b2Joint* joint)
     }
 }
 
-Simulation::Simulation(Settings* settings)
+Simulation::Simulation(Settings* settings, RenderCallback* render)
 {
     _settings = settings;
 
@@ -62,7 +62,8 @@ Simulation::Simulation(Settings* settings)
     _groundBody->CreateFixture(&groundBox,0);
 
     // TODO: if client then create a new ship
-    entities.push_back(Create(e_ship, _world));
+    Entity* entity = Create(e_ship, _world, render);
+    entities.push_back(entity);
 }
 
 Simulation::~Simulation()
@@ -191,7 +192,9 @@ void Simulation::Step()
 
     for (EntityList::iterator entity = entities.begin(); entity != entities.end(); entity++)
     {
+        // Update the physics simulation for each object in the world
         (*entity)->Step();
+        // Draw each object in the world
         //entity->drawcallback()
     }
 }

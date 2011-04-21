@@ -2,11 +2,13 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include "entity.h"
+
 
 class Ship : public Entity
 {
 public:
-    Ship(b2World* world) : Entity(world)
+    Ship(b2World* world, RenderCallback* render) : Entity(world, render)
     {
         b2BodyDef bd;
         bd.type = b2_dynamicBody;
