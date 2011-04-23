@@ -5,12 +5,23 @@
 #include "entity.h"
 #include "../util.h"
 
+#define  GLUT_KEY_LEFT                      0x0064
+#define  GLUT_KEY_UP                        0x0065
+#define  GLUT_KEY_RIGHT                     0x0066
+#define  GLUT_KEY_DOWN                      0x0067
+
+
+static b2Vec2 rad2vec(float r, float m = 1) {
+    return b2Vec2(cosf(r)*m,sinf(r)*m);
+}
 
 class Ship : public Entity
 {
 public:
     Ship(b2World* world, RenderCallback* render) : Entity(world, render)
     {
+        _entityID = 0;
+
         b2BodyDef bd;
         bd.type = b2_dynamicBody;
 
@@ -51,8 +62,45 @@ public:
         }
     }
 
-    void Keyboard()
+    void Keyboard(int key)
     {
+		switch (key)
+		{
+            case GLUT_KEY_UP:
+                if (_body)
+                {
+                    _thrust += 0.5f;
+                    _thrust = b2Clamp(_thrust, 0.0f, 50.0f);
+                    b2Vec2 vec(rad2vec(_body->GetAngle(), _thrust));
+                    _body->SetLinearVelocity(vec);
+
+                    _body->SetAngularVelocity(0.0f);
+                }
+                break;
+            case GLUT_KEY_DOWN:
+                if (_body)
+                {
+                    _thrust -= 0.5f;
+                    _thrust = b2Clamp(_thrust, 0.0f, 50.0f);
+                    b2Vec2 vec(rad2vec(_body->GetAngle(), _thrust));
+                    _body->SetLinearVelocity(vec);
+
+                    _body->SetAngularVelocity(0.0f);
+                }
+                break;
+            case GLUT_KEY_LEFT:
+                if (_body)
+                {
+                    _body->SetAngularVelocity(1.5f);
+                }
+                break;
+            case GLUT_KEY_RIGHT:
+                if (_body)
+                {
+                    _body->SetAngularVelocity(-1.5f);
+                }
+                break;
+		}
     }
 
     ~Ship()
@@ -63,6 +111,7 @@ public:
 
 private:
     b2PolygonShape _polygon;
+    float _thrust;
 };
 
 #endif

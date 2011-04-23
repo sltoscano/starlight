@@ -159,16 +159,6 @@ void Simulation::Step()
         _textLine += 15;
     }
 
-    /*
-    uint32 flags = 0;
-    flags += _settings->drawShapes  * b2DebugDraw::e_shapeBit;
-    flags += _settings->drawJoints  * b2DebugDraw::e_jointBit;
-    flags += _settings->drawAABBs   * b2DebugDraw::e_aabbBit;
-    flags += _settings->drawPairs   * b2DebugDraw::e_pairBit;
-    flags += _settings->drawCOMs    * b2DebugDraw::e_centerOfMassBit;
-    _debugDraw.SetFlags(flags);
-    */
-
     _world->SetWarmStarting(_settings->enableWarmStarting > 0);
     _world->SetContinuousPhysics(_settings->enableContinuous > 0);
 
@@ -196,5 +186,15 @@ void Simulation::Step()
         (*entity)->Step();
         // Draw each object in the world
         (*entity)->Draw();
+    }
+}
+
+void Simulation::Keyboard(int key)
+{
+    for (EntityList::iterator entity = entities.begin(); entity != entities.end(); entity++)
+    {
+        // Only pass keyboard events to the main player ship (client-side only)
+        if ((*entity)->GetID() == 0)
+            (*entity)->Keyboard(key);
     }
 }

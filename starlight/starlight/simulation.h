@@ -85,7 +85,7 @@ public:
     void SetTextLine(int32 line) { _textLine = line; }
     //void DrawTitle(int x, int y, const char *string);
     virtual void Step();
-    virtual void Keyboard(int key) { REF(key); }
+    virtual void Keyboard(int key);
     //void ShiftMouseDown(const b2Vec2& p);
     //virtual void MouseDown(const b2Vec2& p);
     //virtual void MouseUp(const b2Vec2& p);

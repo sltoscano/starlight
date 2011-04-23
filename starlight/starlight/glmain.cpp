@@ -100,17 +100,18 @@ void keyboard(unsigned char key, int x, int y)
 
     switch (key)
     {
+        // ESC exits the application
         case 27:
             exit(0);
             break;
 
-            // Press 'z' to zoom out.
+        // Press 'z' to zoom out
         case 'z':
             viewZoom = b2Min(1.1f * viewZoom, 20.0f);
             resize(width, height);
             break;
 
-            // Press 'x' to zoom in.
+        // Press 'x' to zoom in
         case 'x':
             viewZoom = b2Max(0.9f * viewZoom, 0.02f);
             resize(width, height);
@@ -195,7 +196,7 @@ int glmain(int argc, char *argv[])
 #endif
     glutMotionFunc(mouse_motion);
 
-    /// Use a timer to control the frame rate.
+    // Use a timer to control the frame rate.
     glutTimerFunc(framePeriod, timer, 0);
 
     settings.hz = settingsHz;
