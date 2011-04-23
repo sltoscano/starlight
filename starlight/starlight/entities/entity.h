@@ -13,6 +13,7 @@ public:
     Entity(b2World* world, RenderCallback* render);
 
     virtual void Step() = 0;
+    virtual void Draw() = 0;
     virtual void Keyboard() = 0;
 
     virtual ~Entity();

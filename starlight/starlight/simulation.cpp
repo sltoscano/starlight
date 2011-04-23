@@ -195,6 +195,6 @@ void Simulation::Step()
         // Update the physics simulation for each object in the world
         (*entity)->Step();
         // Draw each object in the world
-        //entity->drawcallback()
+        (*entity)->Draw();
     }
 }

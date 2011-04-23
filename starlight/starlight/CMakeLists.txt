@@ -16,6 +16,8 @@ set(STARLIGHT_SRCS
     render.h
     simulation.cpp
     simulation.h
+    util.cpp
+    util.h
 )
 
 set(ENTITIES_SRCS

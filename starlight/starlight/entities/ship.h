@@ -3,6 +3,7 @@
 #define SHIP_H
 
 #include "entity.h"
+#include "../util.h"
 
 
 class Ship : public Entity
@@ -39,12 +40,19 @@ public:
 
     void Step()
     {
-
+    }
+    
+    void Draw()
+    {
+        for (b2Fixture* f = _body->GetFixtureList(); f; f = f->GetNext())
+		{
+            const b2Color& color = b2Color(0.5f, 0.5f, 0.5f);
+            Util::DrawFixture(f, color, _render);
+        }
     }
 
     void Keyboard()
     {
-
     }
 
     ~Ship()
