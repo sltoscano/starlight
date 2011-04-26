@@ -11,10 +11,6 @@
 #define  GLUT_KEY_DOWN                      0x0067
 
 
-static b2Vec2 rad2vec(float r, float m = 1) {
-    return b2Vec2(cosf(r)*m,sinf(r)*m);
-}
-
 class Ship : public Entity
 {
 public:
@@ -63,7 +59,7 @@ public:
                 {
                     _thrust += 0.5f;
                     _thrust = b2Clamp(_thrust, 0.0f, 50.0f);
-                    b2Vec2 vec(rad2vec(_body->GetAngle(), _thrust));
+                    b2Vec2 vec(Util::Rad2Vec(_body->GetAngle(), _thrust));
                     _body->SetLinearVelocity(vec);
 
                     _body->SetAngularVelocity(0.0f);
@@ -74,7 +70,7 @@ public:
                 {
                     _thrust -= 0.5f;
                     _thrust = b2Clamp(_thrust, 0.0f, 50.0f);
-                    b2Vec2 vec(rad2vec(_body->GetAngle(), _thrust));
+                    b2Vec2 vec(Util::Rad2Vec(_body->GetAngle(), _thrust));
                     _body->SetLinearVelocity(vec);
 
                     _body->SetAngularVelocity(0.0f);
