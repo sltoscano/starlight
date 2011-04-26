@@ -17,21 +17,19 @@ void DestructionListener::SayGoodbye(b2Joint* joint)
 Simulation::Simulation(Settings* settings, RenderCallback* render)
 {
     _settings = settings;
+    _render = render;
 
     b2Vec2 gravity;
     gravity.Set(0.0f, 0.0f);
     bool doSleep = true;
     _world = new b2World(gravity, doSleep);
 
-    _textLine = 30;
     _mouseJoint = NULL;
     _pointCount = 0;
 
     _destructionListener._simulation = this;
     _world->SetDestructionListener(&_destructionListener);
     _world->SetContactListener(this);
-    // TODO: Use different drawing func
-    //_world->SetDebugDraw(&_debugDraw);
 
     _stepCount = 0;
 
@@ -62,7 +60,7 @@ Simulation::Simulation(Settings* settings, RenderCallback* render)
     _groundBody->CreateFixture(&groundBox,0);
 
     // TODO: if client then create a new ship
-    Entity* entity = Create(e_ship, _world, render);
+    Entity* entity = Create(e_ship, _world);
     entities.push_back(entity);
 }
 
@@ -126,7 +124,6 @@ public:
             if (inside)
             {
                 _fixture = fixture;
-
                 // We are done, terminate the query.
                 return false;
             }
@@ -154,9 +151,6 @@ void Simulation::Step()
         {
             timeStep = 0.0f;
         }
-
-        //_debugDraw.DrawString(5, _textLine, "****PAUSED****");
-        _textLine += 15;
     }
 
     _world->SetWarmStarting(_settings->enableWarmStarting > 0);
@@ -171,21 +165,12 @@ void Simulation::Step()
         ++_stepCount;
     }
 
-    if (_settings->drawStats)
-    {
-        /*
-        _debugDraw.DrawString(5, _textLine, "bodies/contacts/joints/proxies = %d/%d/%d",
-            _world->GetBodyCount(), _world->GetContactCount(), _world->GetJointCount(), _world->GetProxyCount());
-        _textLine += 15;
-        */
-    }
-
     for (EntityList::iterator entity = entities.begin(); entity != entities.end(); entity++)
     {
         // Update the physics simulation for each object in the world
         (*entity)->Step();
         // Draw each object in the world
-        (*entity)->Draw();
+        _render->Draw(*entity);
     }
 }
 

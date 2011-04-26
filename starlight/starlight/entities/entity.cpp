@@ -5,11 +5,10 @@
 #include "ship.h"
 
 
-Entity::Entity(b2World* world, RenderCallback* render) :
+Entity::Entity(b2World* world) :
     _entityID(-1),
     _body(NULL),
-    _world(world),
-    _render(render)
+    _world(world)
 {
 }
 
@@ -17,7 +16,7 @@ Entity::~Entity()
 {
 }
 
-Entity* Create(EntityType type, b2World* world, RenderCallback* render)
+Entity* Create(EntityType type, b2World* world)
 {
     Entity* entity = NULL;
 
@@ -32,7 +31,7 @@ Entity* Create(EntityType type, b2World* world, RenderCallback* render)
             break;
         */
         case e_ship:
-            entity = new Ship(world, render);
+            entity = new Ship(world);
             break;
 
         default:

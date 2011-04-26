@@ -18,9 +18,10 @@ static b2Vec2 rad2vec(float r, float m = 1) {
 class Ship : public Entity
 {
 public:
-    Ship(b2World* world, RenderCallback* render) : Entity(world, render)
+    Ship(b2World* world) : Entity(world)
     {
         _entityID = 0;
+        _color.Set(0.5f, 0.5f, 0.5f);
 
         b2BodyDef bd;
         bd.type = b2_dynamicBody;
@@ -51,15 +52,6 @@ public:
 
     void Step()
     {
-    }
-    
-    void Draw()
-    {
-        for (b2Fixture* f = _body->GetFixtureList(); f; f = f->GetNext())
-		{
-            const b2Color& color = b2Color(0.5f, 0.5f, 0.5f);
-            Util::DrawFixture(f, color, _render);
-        }
     }
 
     void Keyboard(int key)
@@ -103,6 +95,11 @@ public:
 		}
     }
 
+    const b2Color& GetColor()
+    {
+        return _color;
+    }
+
     ~Ship()
     {
         _world->DestroyBody(_body);
@@ -110,6 +107,7 @@ public:
     }
 
 private:
+    b2Color _color;
     b2PolygonShape _polygon;
     float _thrust;
 };

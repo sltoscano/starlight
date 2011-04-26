@@ -16,7 +16,6 @@ struct Settings
     hz(60.0f),
     velocityIterations(8),
     positionIterations(3),
-    drawStats(1),
     drawShapes(1),
     drawJoints(1),
     drawAABBs(0),
@@ -36,7 +35,6 @@ struct Settings
     float32 hz;
     int32 velocityIterations;
     int32 positionIterations;
-    int32 drawStats;
     int32 drawShapes;
     int32 drawJoints;
     int32 drawAABBs;
@@ -82,8 +80,6 @@ public:
     Simulation(Settings* settings, RenderCallback* render);
     virtual ~Simulation();
 
-    void SetTextLine(int32 line) { _textLine = line; }
-    //void DrawTitle(int x, int y, const char *string);
     virtual void Step();
     virtual void Keyboard(int key);
     //void ShiftMouseDown(const b2Vec2& p);
@@ -115,12 +111,11 @@ protected:
     ContactPoint _points[k_maxContactPoints];
     int32 _pointCount;
     DestructionListener _destructionListener;
-    //DebugDraw _debugDraw;
-    int32 _textLine;
     b2MouseJoint* _mouseJoint;
     b2Vec2 _mouseWorld;
     int32 _stepCount;
     Settings* _settings;
+    RenderCallback* _render;
 
     EntityList entities;
 };

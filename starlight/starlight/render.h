@@ -2,17 +2,16 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include <Box2D/Box2D.h>
+#include "entities/entity.h"
 
 
 class RenderCallback
 {
 public:
-
     RenderCallback() {}
-	virtual ~RenderCallback() {}
+    virtual ~RenderCallback() {}
 
-    virtual void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) = 0;
+    virtual void Draw(Entity* entity) = 0;
 };
 
 #endif
