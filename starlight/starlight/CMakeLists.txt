@@ -14,6 +14,8 @@ set(STARLIGHT_SRCS
     glrender.cpp
     glrender.h
     render.h
+    server.cpp
+    server.h
     simulation.cpp
     simulation.h
     util.cpp

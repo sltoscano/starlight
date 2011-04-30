@@ -170,7 +170,7 @@ void Simulation::Step()
         // Update the physics simulation for each object in the world
         (*entity)->Step();
         // Draw each object in the world
-        _render->Draw(*entity);
+        if (_render) _render->Draw(*entity);
     }
 }
 
