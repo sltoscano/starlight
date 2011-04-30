@@ -10,14 +10,18 @@
 #define  GLUT_KEY_RIGHT                     0x0066
 #define  GLUT_KEY_DOWN                      0x0067
 
+static int i=0;
 
 class Ship : public Entity
 {
 public:
     Ship(b2World* world) : Entity(world)
     {
-        _entityID = 0;
-        _color.Set(0.5f, 0.5f, 0.5f);
+        _entityID = i++;
+        if (_entityID > 0)
+            _color.Set(0.5f, 0.5f, 0.5f);
+        else
+            _color.Set(0.3f, 0.2f, 0.7f);
 
         b2BodyDef bd;
         bd.type = b2_dynamicBody;

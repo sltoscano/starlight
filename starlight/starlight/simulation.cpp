@@ -60,8 +60,11 @@ Simulation::Simulation(Settings* settings, RenderCallback* render)
     _groundBody->CreateFixture(&groundBox,0);
 
     // TODO: if client then create a new ship
-    Entity* entity = Create(e_ship, _world);
-    entities.push_back(entity);
+    for (int i=0; i<350; i++)
+    {
+        Entity* entity = Create(e_ship, _world);
+        entities.push_back(entity);
+    }
 }
 
 Simulation::~Simulation()

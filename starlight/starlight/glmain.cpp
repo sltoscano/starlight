@@ -13,7 +13,7 @@ namespace
     float32 viewZoom = 1.0f;
     b2Vec2 viewCenter(0.0f, 0.0f);
     int32 mainWindow;
-    float settingsHz = 60.0;
+    float settingsHz = 30.0;
     Simulation* simulation;
     Settings settings;
     GLRenderCallback render;
