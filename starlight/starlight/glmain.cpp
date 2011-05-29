@@ -3,6 +3,7 @@
 #include "simulation.h"
 #include "glrender.h"
 #include <freeglut/GL/freeglut.h>
+#include <stdio.h>
 
 
 namespace

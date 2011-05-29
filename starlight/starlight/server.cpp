@@ -2,6 +2,7 @@
 #include "server.h"
 #include "common.h"
 #include "simulation.h"
+#include <unistd.h>
 
 
 namespace
